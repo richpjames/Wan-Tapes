@@ -1,6 +1,7 @@
 import React from "react";
 
 import styled from "styled-components";
+import Buy from "./Buy"
 
 const ContainerWrapper = styled.section`
   background: #fcfdfe;
@@ -31,6 +32,7 @@ export default function Container() {
     <ContainerWrapper>
       <Hot>Hot</Hot>
       <Tap>Tap</Tap>
+      <Buy />
     </ContainerWrapper>
   );
 }
