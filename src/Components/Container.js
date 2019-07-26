@@ -5,9 +5,11 @@ import Buy from "./Buy";
 
 const ContainerWrapper = styled.section`
   background: #fcfdfe;
+  display: block;
   z-index: 5;
   width: 75vw;
   height: 85vh;
+  margin: auto auto;
   position: relative;
   top: 5vh;
   bottom: 10vh;
