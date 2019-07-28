@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const BackgroundWrapper = styled.section`
   background: #a0ecff;
-  width: 100vw;
+  width: 99vw;
   height: 100vh;
   z-index: -1;
   position: absolute;
@@ -11,5 +11,5 @@ const BackgroundWrapper = styled.section`
 `;
 
 export default function Background() {
-  return <BackgroundWrapper />;
+  return <BackgroundWrapper className="BackgroundWrapper" />;
 }
