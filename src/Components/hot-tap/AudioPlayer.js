@@ -69,13 +69,14 @@ export default class AudioPlayer extends Component {
     );
   }
   componentDidUpdate(prevProps, prevState) {
-    const { selectedTrack } = this.state;
+    const { selectedTrack, player } = this.state;
     const laneCreeperLink = this.state.tracks[0].uri;
     const gooseberryLink = this.state.tracks[1].uri;
     const almostDefLink = this.state.tracks[2].uri;
 
     if (selectedTrack !== prevState.selectedTrack) {
       let trackToPlay;
+      
       switch (selectedTrack) {
         case "Lane Creeper":
           trackToPlay = laneCreeperLink;
@@ -89,11 +90,14 @@ export default class AudioPlayer extends Component {
         default:
           break;
       }
+      
       if (trackToPlay) {
         this.player.src = trackToPlay;
         this.player.play();
         this.setState({ player: "playing" });
       }
+
+      
     }
   }
 }
