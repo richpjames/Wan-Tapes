@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 const BackgroundWrapper = styled.section`
   background: #a0ecff;
-  width:100vw;
+  width: 100vw;
   height: 100vh;
-  z-index: -1;
+  z-index: -2;
   position: absolute;
   top: 0;
 `;
