@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import styled from "styled-components";
+
+const ButtonWrapper = styled.div``
 
 export default class AudioPlayer extends Component {
   state = {
@@ -22,10 +25,13 @@ export default class AudioPlayer extends Component {
         length: 12.01,
         uri: "https://www.wantapes.com/trax/B1-Almost-Definitely-Nothing.mp3"
       }
-    ]
+    ],
+    player: "stopped"
   };
+
   render() {
     const { tracks } = this.state;
+    const {player} = this.state;
     const tracklist = tracks.map(track => {
       return (
         <li
@@ -37,10 +43,29 @@ export default class AudioPlayer extends Component {
       );
     });
     return (
-      <div>
+      <>
         <ul>{tracklist}</ul>
-        <audio ref={ref => (this.player = ref)} />
-      </div>
+        <ButtonWrapper>
+        {player === "paused" && (
+          <button onClick={() => this.setState({player: "playing"})}>
+            Play
+          </button>
+        )}
+        {player === "playing" && (
+          <button onClick={() => this.setState({player: "paused"})}>
+            Pause
+          </button>
+        )}
+        {player === "playing" || player === "paused" ? (
+          <button onClick={() => this.setState({player: "stopped"})}>
+            Stop
+          </button>
+        ) : (
+          ""
+        )}
+        </ButtonWrapper>
+          <audio ref={ref => (this.player = ref)} />
+      </>
     );
   }
   componentDidUpdate(prevProps, prevState) {
@@ -48,7 +73,7 @@ export default class AudioPlayer extends Component {
     const laneCreeperLink = this.state.tracks[0].uri;
     const gooseberryLink = this.state.tracks[1].uri;
     const almostDefLink = this.state.tracks[2].uri;
-    let { src, play } = this.player;
+
     if (selectedTrack !== prevState.selectedTrack) {
       let trackToPlay;
       switch (selectedTrack) {
@@ -65,8 +90,9 @@ export default class AudioPlayer extends Component {
           break;
       }
       if (trackToPlay) {
-        src = trackToPlay;
-        play();
+        this.player.src = trackToPlay;
+        this.player.play();
+        this.setState({ player: "playing" });
       }
     }
   }
