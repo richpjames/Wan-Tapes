@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-const ButtonWrapper = styled.div``
+const ButtonWrapper = styled.div``;
+const TimerWrapper = styled.div``
 
 export default class AudioPlayer extends Component {
   state = {
@@ -26,12 +27,15 @@ export default class AudioPlayer extends Component {
         uri: "https://www.wantapes.com/trax/B1-Almost-Definitely-Nothing.mp3"
       }
     ],
-    player: "stopped"
+    player: "stopped",
+    currentTime: null,
+    duration: null
   };
 
   render() {
-    const { tracks } = this.state;
-    const {player} = this.state;
+    const { tracks, player } = this.state;
+    const currentTime = getTime(this.state.currentTime);
+    const duration = getTime(this.state.duration);
     const tracklist = tracks.map(track => {
       return (
         <li
@@ -46,28 +50,38 @@ export default class AudioPlayer extends Component {
       <>
         <ul>{tracklist}</ul>
         <ButtonWrapper>
-        {player === "paused" && (
-          <button onClick={() => this.setState({player: "playing"})}>
-            Play
-          </button>
-        )}
-        {player === "playing" && (
-          <button onClick={() => this.setState({player: "paused"})}>
-            Pause
-          </button>
-        )}
+          {player === "paused" && (
+            <button onClick={() => this.setState({ player: "playing" })}>
+              Play
+            </button>
+          )}
+          {player === "playing" && (
+            <button onClick={() => this.setState({ player: "paused" })}>
+              Pause
+            </button>
+          )}
+          {player === "playing" || player === "paused" ? (
+            <button onClick={() => this.setState({ player: "stopped" })}>
+              Stop
+            </button>
+          ) : (
+            ""
+          )}
+        </ButtonWrapper>
+
         {player === "playing" || player === "paused" ? (
-          <button onClick={() => this.setState({player: "stopped"})}>
-            Stop
-          </button>
+          <TimerWrapper>
+            {currentTime} / {duration}
+          </TimerWrapper>
         ) : (
           ""
         )}
-        </ButtonWrapper>
-          <audio ref={ref => (this.player = ref)} />
+
+        <audio ref={ref => (this.player = ref)} />
       </>
     );
   }
+
   componentDidUpdate(prevProps, prevState) {
     const { selectedTrack, player } = this.state;
     const laneCreeperLink = this.state.tracks[0].uri;
@@ -76,7 +90,7 @@ export default class AudioPlayer extends Component {
 
     if (selectedTrack !== prevState.selectedTrack) {
       let trackToPlay;
-      
+
       switch (selectedTrack) {
         case "Lane Creeper":
           trackToPlay = laneCreeperLink;
@@ -90,14 +104,46 @@ export default class AudioPlayer extends Component {
         default:
           break;
       }
-      
+
       if (trackToPlay) {
         this.player.src = trackToPlay;
         this.player.play();
         this.setState({ player: "playing" });
       }
 
-      
+      if (player !== prevState.player) {
+        if (player === "paused") {
+          this.player.pause();
+        } else if (player === "stopped") {
+          this.player.pause();
+          this.player.currentTime = 0;
+          this.setState({ selectedTrack: null });
+        } else if (
+          this.state.player === "playing" &&
+          prevState.player === "paused"
+        ) {
+          this.player.play();
+        }
+      }
     }
+  }
+  componentDidMount() {
+    this.player.addEventListener("timeupdate", e => {
+      this.setState({
+        currentTime: e.target.currentTime,
+        duration: e.target.duration
+      });
+    });
+  }
+
+  componentWillUnmount() {
+    this.player.removeEventListener("timeupdate", () => {});
+  }
+}
+function getTime(time) {
+  if (!isNaN(time)) {
+    return (
+      Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
+    );
   }
 }
