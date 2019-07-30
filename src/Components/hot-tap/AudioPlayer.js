@@ -2,11 +2,22 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 const ButtonWrapper = styled.div``;
-const TimerWrapper = styled.div``
+const TimerWrapper = styled.div``;
+
+function getTime(time) {
+  if (!isNaN(time)) {
+    return (
+      Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
+    );
+  }
+}
 
 export default class AudioPlayer extends Component {
   state = {
     selectedTrack: null,
+    player: null,
+    currentTime: null,
+    duration: null,
     tracks: [
       {
         id: "A1",
@@ -26,10 +37,7 @@ export default class AudioPlayer extends Component {
         length: 12.01,
         uri: "https://www.wantapes.com/trax/B1-Almost-Definitely-Nothing.mp3"
       }
-    ],
-    player: "stopped",
-    currentTime: null,
-    duration: null
+    ]
   };
 
   render() {
@@ -83,7 +91,7 @@ export default class AudioPlayer extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { selectedTrack, player } = this.state;
+    const { selectedTrack } = this.state;
     const laneCreeperLink = this.state.tracks[0].uri;
     const gooseberryLink = this.state.tracks[1].uri;
     const almostDefLink = this.state.tracks[2].uri;
@@ -108,25 +116,28 @@ export default class AudioPlayer extends Component {
       if (trackToPlay) {
         this.player.src = trackToPlay;
         this.player.play();
-        this.setState({ player: "playing" });
+        this.setState({ player: "playing", duration: this.player.duration });
       }
-
-      if (player !== prevState.player) {
-        if (player === "paused") {
-          this.player.pause();
-        } else if (player === "stopped") {
-          this.player.pause();
-          this.player.currentTime = 0;
-          this.setState({ selectedTrack: null });
-        } else if (
-          this.state.player === "playing" &&
-          prevState.player === "paused"
-        ) {
-          this.player.play();
-        }
+    }
+    if (this.state.player !== prevState.player) {
+      console.log("state change");
+      if (this.state.player === "paused") {
+        console.log("pausing");
+        this.player.pause();
+      } else if (this.state.player === "stopped") {
+        console.log("stopped");
+        this.player.pause();
+        this.player.currentTime = 0;
+        this.setState({ selectedTrack: null });
+      } else if (
+        this.state.player === "playing" &&
+        prevState.player === "paused"
+      ) {
+        this.player.play();
       }
     }
   }
+
   componentDidMount() {
     this.player.addEventListener("timeupdate", e => {
       this.setState({
@@ -138,12 +149,5 @@ export default class AudioPlayer extends Component {
 
   componentWillUnmount() {
     this.player.removeEventListener("timeupdate", () => {});
-  }
-}
-function getTime(time) {
-  if (!isNaN(time)) {
-    return (
-      Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
-    );
   }
 }
