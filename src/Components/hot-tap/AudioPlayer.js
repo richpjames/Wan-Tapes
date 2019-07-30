@@ -15,7 +15,7 @@ function getTime(time) {
 export default class AudioPlayer extends Component {
   state = {
     selectedTrack: null,
-    player: null,
+    player: "stopped",
     currentTime: null,
     duration: null,
     tracks: [
