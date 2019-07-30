@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import AudioPlayer from "./AudioPlayer";
+import BuyButton from "./BuyButton";
 
 export const BoxWrapper = styled.div`
   margin: auto auto;
@@ -10,6 +11,11 @@ export const BoxWrapper = styled.div`
 export default class HotTapHome extends Component {
   state = {};
   render() {
-    return <AudioPlayer/>;
+    return (
+      <>
+        <AudioPlayer />;
+        <BuyButton />
+      </>
+    );
   }
 }
