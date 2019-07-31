@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import IndividualTrack from "./IndividualTrack";
+import { FaPlay } from "react-icons/fa";
 
 const ButtonWrapper = styled.div``;
 const TimerWrapper = styled.div``;
@@ -14,27 +16,30 @@ function getTime(time) {
 
 export default class AudioPlayer extends Component {
   state = {
-    selectedTrack: null,
+    selectedTrack: "Lane Creeper",
     player: "stopped",
-    currentTime: null,
-    duration: null,
+    currentTime: 0,
+    duration: 0,
     tracks: [
       {
         id: "A1",
         title: "Lane Creeper",
         length: 5.39,
+        glyph: "†",
         uri: "https://www.wantapes.com/trax/A1-Lane-Creeper.mp3"
       },
       {
         id: "A2",
         title: "Gooseberry",
         length: 4.47,
+        glyph: "†",
         uri: "https://www.wantapes.com/trax/A2-Gooseberry.mp3"
       },
       {
         id: "B1",
         title: "Almost Definitely Nothing",
         length: 12.01,
+        glyph: "‡",
         uri: "https://www.wantapes.com/trax/B1-Almost-Definitely-Nothing.mp3"
       }
     ]
@@ -45,45 +50,36 @@ export default class AudioPlayer extends Component {
     const currentTime = getTime(this.state.currentTime);
     const duration = getTime(this.state.duration);
     const tracklist = tracks.map(track => {
+      const { id, glyph, title } = track;
       return (
-        <li
-          key={track.id}
-          onClick={() => this.setState({ selectedTrack: track.title })}
-        >
-          {track.title}
-        </li>
+        <IndividualTrack
+          key={id}
+          glyph={glyph}
+          title={title}
+          setStateWithTrack={this.setStateWithTrack}
+        />
       );
     });
     return (
       <>
         <ul>{tracklist}</ul>
         <ButtonWrapper>
-          {player === "paused" && (
-            <button onClick={() => this.setState({ player: "playing" })}>
-              Play
-            </button>
-          )}
-          {player === "playing" && (
-            <button onClick={() => this.setState({ player: "paused" })}>
-              Pause
-            </button>
-          )}
-          {player === "playing" || player === "paused" ? (
-            <button onClick={() => this.setState({ player: "stopped" })}>
-              Stop
-            </button>
-          ) : (
-            ""
-          )}
+          <button onClick={() => this.setState({ player: "playing" })}>
+            <FaPlay />
+          </button>
+
+          <button onClick={() => this.setState({ player: "paused" })}>
+            Pause
+          </button>
+
+          <button onClick={() => this.setState({ player: "stopped" })}>
+            Stop
+          </button>
         </ButtonWrapper>
 
-        {player === "playing" || player === "paused" ? (
-          <TimerWrapper>
-            {currentTime} / {duration}
-          </TimerWrapper>
-        ) : (
-          ""
-        )}
+        <TimerWrapper>
+          {currentTime} / {duration}
+        </TimerWrapper>
 
         <audio ref={ref => (this.player = ref)} />
       </>
@@ -150,4 +146,9 @@ export default class AudioPlayer extends Component {
   componentWillUnmount() {
     this.player.removeEventListener("timeupdate", () => {});
   }
+
+  setStateWithTrack = title => {
+    this.setState({ selectedTrack: title });
+  };
+  setPlayingState = () => {};
 }
