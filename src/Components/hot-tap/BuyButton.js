@@ -27,9 +27,9 @@ export default function BuyButton() {
                   tape + download £7.03 GBP
                 </option>
                 <option value="download only">download only £3.07 GBP</option>
-              </select>{" "}
+              </select>
             </td>
-          </tr>{" "}
+          </tr>
         </table>
         <input type="hidden" name="currency_code" value="GBP" />
         <input
