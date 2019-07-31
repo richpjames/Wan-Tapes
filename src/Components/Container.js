@@ -7,7 +7,7 @@ const Wrap = styled.section`
   z-index: -1;
   width: 75vw;
   height: 85vh;
-  position: relative;
+  position: absolute;
   top: 5vh;
   bottom: 10vh;
   left: 10vh;
