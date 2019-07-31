@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import AudioPlayer from "./AudioPlayer";
+import HowlerPlayer from "./HowlerPlayer";
 import BuyButton from "./BuyButton";
 
 export const BoxWrapper = styled.div`
@@ -13,7 +13,7 @@ export default class HotTapHome extends Component {
   render() {
     return (
       <>
-        <AudioPlayer />;
+        <HowlerPlayer />
         <BuyButton />
       </>
     );
