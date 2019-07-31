@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-const BuyWrapper = styled.section``;
+const BuyWrapper = styled.section`
+  position: absolute;
+  top: 15%;
+`;
 
 export default function BuyButton() {
   return (
@@ -14,22 +17,24 @@ export default function BuyButton() {
         <input type="hidden" name="cmd" value="_s-xclick" />
         <input type="hidden" name="hosted_button_id" value="8PLDYY7R9GCBN" />
         <table>
-          <tr>
-            <td>
-              <input type="hidden" name="on0" value="item" />
-              item
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <select name="os0">
-                <option value="tape + download">
-                  tape + download £7.03 GBP
-                </option>
-                <option value="download only">download only £3.07 GBP</option>
-              </select>
-            </td>
-          </tr>
+          <tbody>
+            <tr>
+              <td>
+                <input type="hidden" name="on0" value="item" />
+                item
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <select name="os0">
+                  <option value="tape + download">
+                    tape + download £7.03 GBP
+                  </option>
+                  <option value="download only">download only £3.07 GBP</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
         </table>
         <input type="hidden" name="currency_code" value="GBP" />
         <input
