@@ -5,6 +5,7 @@ import BuyButton from "./BuyButton";
 import HotTapText from "./HotTapText";
 import Container from "../Container";
 import BackgroundWrapper from "../Background";
+import Photos from "./Photos";
 
 const SecondContainerWrap = styled.div`
   margin-top: 15vh;
@@ -20,7 +21,9 @@ export default class HotTapHome extends Component {
         <AudioPlayer />
         <SecondContainerWrap>
           <Container primary />
+          <Photos />
         </SecondContainerWrap>
+
         {/* <BuyButton /> */}
       </>
     );
