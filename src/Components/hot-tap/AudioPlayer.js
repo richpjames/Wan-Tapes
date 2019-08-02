@@ -56,7 +56,7 @@ export default class AudioPlayer extends Component {
   };
 
   render() {
-    const { tracksArr, playStates } = this.state;
+    const { tracksArr, playStates, selectedTrack } = this.state;
     const currentTime = getTime(this.state.currentTime);
     const stopAndPause = playStates.slice(1, 3);
 
@@ -69,26 +69,28 @@ export default class AudioPlayer extends Component {
           title={title}
           uri={uri}
           length={length}
+          selectedTrack={selectedTrack}
           setStateWithTrack={this.setStateWithTrack}
         />
       );
     });
 
-    const playerButtons = stopAndPause.map(playState => {
-      return (
-        <MusicControlButton
-          key={playState}
-          playState={playState}
-          setPlayState={this.setStateWithTrack}
-        />
-      );
-    });
+    // const playerButtons = stopAndPause.map(playState => {
+    //   return (
+    //     <MusicControlButton
+    //       key={playState}
+    //       playState={playState}
+    //       setPlayState={this.setStateWithTrack}
+    //     />
 
     return (
       <AudioPlayerWrap className="audioPlayerWrap">
         <Tracks>{tracks}</Tracks>
         <ButtonsWrapper className="buttonsWrapper">
-          {playerButtons}
+          <MusicControlButton
+            playState={"Stop"}
+            setPlayState={this.setStateWithTrack}
+          />
         </ButtonsWrapper>
         <TimerWrapper className="timerWrapper">
           {this.timeCheck(currentTime)}
@@ -99,8 +101,14 @@ export default class AudioPlayer extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { selectedTrack } = this.state;
-    const { player, trackLink } = this.state;
+    const {
+      player,
+      trackLink,
+      currentTime,
+      selectedTrack,
+      tracksArr,
+      duration
+    } = this.state;
 
     if (player !== prevState.player) {
       if (player === "Pause") {
@@ -119,6 +127,20 @@ export default class AudioPlayer extends Component {
         this.player.play();
         this.setState({ player: "Play", duration: this.player.duration });
       }
+    }
+    if (selectedTrack === "Lane Creeper" && currentTime === duration - 1) {
+      this.setState({
+        player: "Play",
+        selectedTrack: "Gooseberry",
+        trackLink: tracksArr[1].uri
+      });
+    }
+    if (selectedTrack === "Gooseberry" && currentTime === duration - 1) {
+      this.setState({
+        player: "Play",
+        selectedTrack: "Almost Definitely Nothing",
+        trackLink: tracksArr[2].uri
+      });
     }
   }
 
@@ -142,9 +164,7 @@ export default class AudioPlayer extends Component {
       trackLink: trackLink
     });
   };
-  // setPlayState = playState => {
-  //   this.setState({ player: playState });
-  // };
+
   timeCheck = time => {
     if (time) return time;
     else return "00:00";
