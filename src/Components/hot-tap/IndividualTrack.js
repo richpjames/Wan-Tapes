@@ -1,7 +1,7 @@
 import React from "react";
-import { FaPlay } from "react-icons/fa";
+import { FaPlay, FaPause } from "react-icons/fa";
 import styled from "styled-components";
-
+import PlayStopPause from "./MusicControlButton";
 const Track = styled.li``;
 
 export default function IndividualTrack({
@@ -9,14 +9,24 @@ export default function IndividualTrack({
   glyph,
   length,
   setStateWithTrack,
-  uri
+  uri,
+  selectedTrack
 }) {
   return (
     <Track className="track">
       {`${glyph} ${title} ${length}`}
-      <button onClick={() => setStateWithTrack("Play", title, uri)}>
-        <FaPlay />
-      </button>
+
+      {selectedTrack === title ? (
+        <>
+          <button onClick={() => setStateWithTrack("Pause")}>
+            <FaPause />
+          </button>
+        </>
+      ) : (
+        <button onClick={() => setStateWithTrack("Play", title, uri)}>
+          <FaPlay />
+        </button>
+      )}
     </Track>
   );
 }
