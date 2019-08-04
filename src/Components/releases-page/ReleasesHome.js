@@ -4,12 +4,12 @@ import { releases } from "../../data/releases.json";
 import BackgroundWrapper from "../single-release/ReleaseWrap";
 
 const Release = styled.section`
-  width: 20%;
   border: 1px red solid;
 `;
 
 const ReleasesWrapper = styled.section`
   display: flex;
+  border: 2px magenta solid;
 `;
 
 export default class ReleasesHome extends Component {
@@ -35,7 +35,7 @@ export default class ReleasesHome extends Component {
           <Release key={releaseDate}>
             <BackgroundWrapper
               colors={colors}
-              height={"200vh"}
+              height={"150vh"}
               title={title}
               artist={artist}
               tracks={tracks}

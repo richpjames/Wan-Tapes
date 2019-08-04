@@ -5,8 +5,7 @@ import MusicControlButton from "./StopButton";
 
 const ButtonsWrapper = styled.div``;
 const AudioPlayerWrap = styled.section`
-  top: 50%;
-  left: 30%;
+  
 `;
 const Tracks = styled.ul`
   text-align: left;

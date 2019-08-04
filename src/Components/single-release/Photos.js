@@ -11,7 +11,6 @@ const ImagesWrapper = styled.div`
   width: 80%;
   margin-left: auto;
   margin-right: auto;
-  height: 80%;
   z-index: 5;
   border: 1px red dashed;
 `;
