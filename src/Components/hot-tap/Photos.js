@@ -13,6 +13,7 @@ const ImagesWrapper = styled.div`
   margin-right: auto;
   height: 80%;
   z-index: 5;
+  border: 1px red dashed;
 `;
 
 const baseUrl = "https://www.wantapes.com/img/TapeImage";
@@ -37,7 +38,7 @@ export default class Photos extends Component {
     return (
       <div>
         <VisibilitySensor>
-          <ImagesWrapper>{photoReel}</ImagesWrapper>
+          <ImagesWrapper className="ImagesWrapper">{photoReel}</ImagesWrapper>
         </VisibilitySensor>
 
         {isOpen && (
@@ -67,6 +68,6 @@ export default class Photos extends Component {
     );
   }
   openLightbox = i => {
-  this.setState({ isOpen: true, photoIndex: i });
-};
+    this.setState({ isOpen: true, photoIndex: i });
+  };
 }
