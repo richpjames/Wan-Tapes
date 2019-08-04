@@ -1,6 +1,6 @@
 import React from "react";
-import Background from "../Background";
-import Container from "../Container";
+import Background from "../single-release/Background";
+import Container from "../single-release/Container";
 
 export default function HomePage() {
   return (
