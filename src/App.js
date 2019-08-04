@@ -1,21 +1,16 @@
 import React from "react";
 import { Router } from "@reach/router";
 import HomePage from "./Components/home/HomePage";
-import HotTapHome from "./Components/hot-tap/HotTapHome";
-import RedRibbon from "./Components/RedRibbon";
-import Background from "./Components/Background";
-import Container from "./Components/Container";
 import "./App.css";
+import ReleasesHome from "./Components/releases-page/ReleasesHome";
 
 function App() {
   return (
     <div className="App">
-      <Container />
       <Router>
         <HomePage path="/" />
-        <HotTapHome path="/releases/hot-tap" />
+        <ReleasesHome path="/releases" />
       </Router>
-      <RedRibbon />
     </div>
   );
 }
