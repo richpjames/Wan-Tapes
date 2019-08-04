@@ -33,6 +33,46 @@
             "TapeImage4.jpg"
         ],
         "baseUrl": "https://www.wantapes.com/releases/ht-ht/",
-        "colors": { "background": "#a0ecff", "other": "#ff3030" }
+        "colors": { "background": "#a0ecff", "other": "#ff3030" },
+        "coverArt": ""
+    }, {
+        "title": "Big Deal",
+        "artist": "Not TaD",
+        "releaseDate": "12/08/2019",
+        "tracks": [{
+                "id": "A1",
+                "title": "Lane Creeper",
+                "length": 5.39,
+                "glyph": "†",
+                "uri": "https://www.wantapes.com/releases/ht-ht/trax/A1-Lane-Creeper.mp3"
+            },
+            {
+                "id": "A2",
+                "title": "Gooseberry",
+                "length": 4.47,
+                "glyph": "†",
+                "uri": "https://www.wantapes.com/releases/ht-ht/trax/A2-Gooseberry.mp3"
+            },
+            {
+                "id": "B1",
+                "title": "Almost Definitely Nothing",
+                "length": 12.01,
+                "glyph": "‡",
+                "uri": "https://www.wantapes.com/releases/ht-ht/trax/B1-Almost-Definitely-Nothing.mp3"
+            }
+        ],
+        "buyCode": "8PLDYY7R9GCBN",
+        "photos": [
+            "TapeImage1.jpg",
+            "TapeImage2.jpg",
+            "TapeImage3.jpg",
+            "TapeImage4.jpg"
+        ],
+        "baseUrl": "https://www.wantapes.com/releases/ht-ht/",
+        "colors": {
+            "background": "#a0ecff",
+            "other": "#ff3030"
+        },
+        "coverArt": ""
     }]
 }
