@@ -1,9 +1,8 @@
 import React from "react";
 import { FaPlay, FaPause } from "react-icons/fa";
 import styled from "styled-components";
-import PlayStopPause from "./MusicControlButton";
-const Track = styled.li``;
 
+const Track = styled.li``;
 export default function IndividualTrack({
   title,
   glyph,
