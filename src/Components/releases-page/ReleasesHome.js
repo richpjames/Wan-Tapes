@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { releases } from "../../data/releases.json";
 import AudioPlayer from "../single-release/AudioPlayer";
-import BackgroundWrapper from "../single-release/Background";
+import BackgroundWrapper from "../single-release/ReleaseWrap";
 import Container from "../single-release/Container";
 import TitleText from "../single-release/TitleText";
 import Photos from "../single-release/Photos";
@@ -15,9 +15,12 @@ const SecondContainerWrap = styled.div`
 
 const Release = styled.section`
   width: 20%;
+  border: 1px red solid;
 `;
 
-const ReleasesWrapper = styled.section``;
+const ReleasesWrapper = styled.section`
+  display: flex;
+`;
 
 export default class ReleasesHome extends Component {
   state = {

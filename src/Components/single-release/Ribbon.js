@@ -6,7 +6,6 @@ const RibbonWrapper = styled.section`
   height: 15%;
   background: ${props => (props.colors ? props.colors.other : "#000")};
   z-index: 10;
-  position: absolute;
   top: 35%;
 `;
 

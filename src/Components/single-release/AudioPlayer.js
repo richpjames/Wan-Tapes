@@ -5,7 +5,6 @@ import MusicControlButton from "./StopButton";
 
 const ButtonsWrapper = styled.div``;
 const AudioPlayerWrap = styled.section`
-  position: absolute;
   top: 50%;
   left: 30%;
 `;
