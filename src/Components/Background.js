@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 export const BackgroundWrapper = styled.section`
-  background: #a0ecff;
-  width: 100vw;
+  background: ${props => (props.colors ? props.colors.background : "#000")};
+  width: 40vw;
   height: ${props => (props.height ? props.height : "100vh")};
   z-index: -2;
   position: absolute;
