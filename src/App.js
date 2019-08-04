@@ -15,7 +15,6 @@ function App() {
         <HomePage path="/" />
         <HotTapHome path="/releases/hot-tap" />
       </Router>
-      <Background />
       <RedRibbon />
     </div>
   );

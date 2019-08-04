@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const BackgroundWrapper = styled.section`
+export const BackgroundWrapper = styled.section`
   background: #a0ecff;
   width: 100vw;
-  height: 100vh;
+  height: ${props => (props.height ? props.height : "100vh")};
   z-index: -2;
   position: absolute;
   top: 0;
 `;
 
-export default function Background() {
-  return <BackgroundWrapper className="BackgroundWrapper" />;
+export default function Background(props) {
+  return <BackgroundWrapper {...props} className="BackgroundWrapper" />;
 }

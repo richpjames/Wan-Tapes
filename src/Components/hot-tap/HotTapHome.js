@@ -1,15 +1,30 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import AudioPlayer from "./AudioPlayer";
+import BuyButton from "./BuyButton";
+import HotTapText from "./HotTapText";
+import Container from "../Container";
+import BackgroundWrapper from "../Background";
+import Photos from "./Photos";
 
-export const BoxWrapper = styled.div`
-  margin: auto auto;
-  width: 85%;
+const SecondContainerWrap = styled.div`
+  margin-top: 15vh;
 `;
 
 export default class HotTapHome extends Component {
-  state = {};
   render() {
-    return <AudioPlayer/>;
+    return (
+      <>
+        <BackgroundWrapper className="BackgroundWrapper" height="200vh" />
+        <Container primary />
+        <HotTapText />
+        <AudioPlayer />
+        <SecondContainerWrap>
+          <Container primary/>
+          <Photos />
+        </SecondContainerWrap>
+        <BuyButton />
+      </>
+    );
   }
 }

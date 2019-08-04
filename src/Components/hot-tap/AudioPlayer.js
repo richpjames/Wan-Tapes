@@ -1,7 +1,17 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import IndividualTrack from "./IndividualTrack";
+import MusicControlButton from "./MusicControlButton";
 
-const ButtonWrapper = styled.div``;
+const ButtonsWrapper = styled.div``;
+const AudioPlayerWrap = styled.section`
+  position: absolute;
+  top: 50%;
+  left: 30%;
+`;
+const Tracks = styled.ul`
+  text-align: left;
+`;
 const TimerWrapper = styled.div``;
 
 function getTime(time) {
@@ -15,125 +25,99 @@ function getTime(time) {
 export default class AudioPlayer extends Component {
   state = {
     selectedTrack: null,
-    player: "stopped",
-    currentTime: null,
-    duration: null,
-    tracks: [
+    trackLink: null,
+    player: "Stop",
+    currentTime: 0,
+    duration: 0,
+    tracksArr: [
       {
         id: "A1",
         title: "Lane Creeper",
         length: 5.39,
+        glyph: "†",
         uri: "https://www.wantapes.com/trax/A1-Lane-Creeper.mp3"
       },
       {
         id: "A2",
         title: "Gooseberry",
         length: 4.47,
+        glyph: "†",
         uri: "https://www.wantapes.com/trax/A2-Gooseberry.mp3"
       },
       {
         id: "B1",
         title: "Almost Definitely Nothing",
         length: 12.01,
+        glyph: "‡",
         uri: "https://www.wantapes.com/trax/B1-Almost-Definitely-Nothing.mp3"
       }
-    ]
+    ],
+    playStates: ["Play", "Stop", "Pause"]
   };
 
   render() {
-    const { tracks, player } = this.state;
+    const { tracksArr, playStates } = this.state;
     const currentTime = getTime(this.state.currentTime);
-    const duration = getTime(this.state.duration);
-    const tracklist = tracks.map(track => {
+    const stopAndPause = playStates.slice(1, 3);
+
+    const tracks = tracksArr.map(track => {
+      const { id, glyph, title, length, uri } = track;
       return (
-        <li
-          key={track.id}
-          onClick={() => this.setState({ selectedTrack: track.title })}
-        >
-          {track.title}
-        </li>
+        <IndividualTrack
+          key={id}
+          glyph={glyph}
+          title={title}
+          uri={uri}
+          length={length}
+          setStateWithTrack={this.setStateWithTrack}
+        />
       );
     });
+
+    const playerButtons = stopAndPause.map(playState => {
+      return (
+        <MusicControlButton
+          key={playState}
+          playState={playState}
+          setPlayState={this.setStateWithTrack}
+        />
+      );
+    });
+
     return (
-      <>
-        <ul>{tracklist}</ul>
-        <ButtonWrapper>
-          {player === "paused" && (
-            <button onClick={() => this.setState({ player: "playing" })}>
-              Play
-            </button>
-          )}
-          {player === "playing" && (
-            <button onClick={() => this.setState({ player: "paused" })}>
-              Pause
-            </button>
-          )}
-          {player === "playing" || player === "paused" ? (
-            <button onClick={() => this.setState({ player: "stopped" })}>
-              Stop
-            </button>
-          ) : (
-            ""
-          )}
-        </ButtonWrapper>
-
-        {player === "playing" || player === "paused" ? (
-          <TimerWrapper>
-            {currentTime} / {duration}
-          </TimerWrapper>
-        ) : (
-          ""
-        )}
-
+      <AudioPlayerWrap className="audioPlayerWrap">
+        <Tracks>{tracks}</Tracks>
+        <ButtonsWrapper className="buttonsWrapper">
+          {playerButtons}
+        </ButtonsWrapper>
+        <TimerWrapper className="timerWrapper">
+          {this.timeCheck(currentTime)}
+        </TimerWrapper>
         <audio ref={ref => (this.player = ref)} />
-      </>
+      </AudioPlayerWrap>
     );
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { selectedTrack } = this.state;
-    const laneCreeperLink = this.state.tracks[0].uri;
-    const gooseberryLink = this.state.tracks[1].uri;
-    const almostDefLink = this.state.tracks[2].uri;
+    const { player, trackLink } = this.state;
 
-    if (selectedTrack !== prevState.selectedTrack) {
-      let trackToPlay;
-
-      switch (selectedTrack) {
-        case "Lane Creeper":
-          trackToPlay = laneCreeperLink;
-          break;
-        case "Gooseberry":
-          trackToPlay = gooseberryLink;
-          break;
-        case "Almost Definitely Nothing":
-          trackToPlay = almostDefLink;
-          break;
-        default:
-          break;
-      }
-
-      if (trackToPlay) {
-        this.player.src = trackToPlay;
-        this.player.play();
-        this.setState({ player: "playing", duration: this.player.duration });
-      }
-    }
-    if (this.state.player !== prevState.player) {
-      console.log("state change");
-      if (this.state.player === "paused") {
-        console.log("pausing");
+    if (player !== prevState.player) {
+      if (player === "Pause") {
         this.player.pause();
-      } else if (this.state.player === "stopped") {
-        console.log("stopped");
+      } else if (player === "Stop") {
         this.player.pause();
         this.player.currentTime = 0;
         this.setState({ selectedTrack: null });
-      } else if (
-        this.state.player === "playing" &&
-        prevState.player === "paused"
-      ) {
+      } else if (player === "Play" && prevState.player === "Pause") {
         this.player.play();
+      }
+    }
+    if (selectedTrack !== prevState.selectedTrack) {
+      if (trackLink) {
+        this.player.src = trackLink;
+        this.player.play();
+        this.setState({ player: "Play", duration: this.player.duration });
       }
     }
   }
@@ -150,4 +134,19 @@ export default class AudioPlayer extends Component {
   componentWillUnmount() {
     this.player.removeEventListener("timeupdate", () => {});
   }
+
+  setStateWithTrack = (playState, title, trackLink) => {
+    this.setState({
+      selectedTrack: title,
+      player: playState,
+      trackLink: trackLink
+    });
+  };
+  // setPlayState = playState => {
+  //   this.setState({ player: playState });
+  // };
+  timeCheck = time => {
+    if (time) return time;
+    else return "00:00";
+  };
 }
