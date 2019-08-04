@@ -20,21 +20,22 @@ const Image = styled.img`
 `;
 const baseUrl = "https://www.wantapes.com/img/TapeImage";
 const photos = ["1.jpg", "2.jpg", "3.jpg", "4.jpg"];
-
 const imagesUrls = photos.map(photo => `${baseUrl}${photo}`);
+
 export default class Photos extends Component {
   state = { photoIndex: 0, isOpen: false };
 
   render() {
     const { photoIndex, isOpen } = this.state;
-    const photoReel = imagesUrls.map(photo => {
-      return <Image className="Image" src={photo} key={photo} />;
+    const photoReel = imagesUrls.map((photo, i) => {
+      return <Image onClick={() => this.setState({ isOpen: true, photoIndex: i })} className="Image" src={photo} key={photo} />;
     });
     return (
       <div>
-        <button type="button" onClick={() => this.setState({ isOpen: true })}>
-          Open Lightbox
-        </button>
+   <VisibilitySensor>
+          <ImagesWrapper>{photoReel}</ImagesWrapper>
+        </VisibilitySensor>
+      
         {isOpen && (
           <Lightbox
             mainSrc={imagesUrls[photoIndex]}
@@ -58,14 +59,8 @@ export default class Photos extends Component {
             }
           />
         )}
-        <VisibilitySensor>
-          <ImagesWrapper>{photoReel}</ImagesWrapper>
-        </VisibilitySensor>
-      </div>
+     </div>
     );
   }
-  enlarge = () => {
-    this.setState({ isOpen: true });
-    alert("dong");
-  };
+
 }

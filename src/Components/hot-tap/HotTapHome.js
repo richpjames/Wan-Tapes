@@ -20,12 +20,10 @@ export default class HotTapHome extends Component {
         <HotTapText />
         <AudioPlayer />
         <SecondContainerWrap>
-          <Container primary>
-            <Photos />
-          </Container>
+          <Container primary/>
+          <Photos />
         </SecondContainerWrap>
-
-        {/* <BuyButton /> */}
+        <BuyButton />
       </>
     );
   }
