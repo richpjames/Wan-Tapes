@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import VisibilitySensor from "react-visibility-sensor";
-import ImageZoom from "react-medium-image-zoom";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
+import IndividualPhoto from "./IndividualPhoto";
 
 const ImagesWrapper = styled.div`
   display: flex;
@@ -14,28 +14,32 @@ const ImagesWrapper = styled.div`
   height: 80%;
   z-index: 5;
 `;
-const Image = styled.img`
-  max-width: 50px;
-  z-index: 20;
-`;
+
 const baseUrl = "https://www.wantapes.com/img/TapeImage";
 const photos = ["1.jpg", "2.jpg", "3.jpg", "4.jpg"];
 const imagesUrls = photos.map(photo => `${baseUrl}${photo}`);
-
 export default class Photos extends Component {
   state = { photoIndex: 0, isOpen: false };
 
   render() {
     const { photoIndex, isOpen } = this.state;
     const photoReel = imagesUrls.map((photo, i) => {
-      return <Image onClick={() => this.setState({ isOpen: true, photoIndex: i })} className="Image" src={photo} key={photo} />;
+      return (
+        <IndividualPhoto
+          className="IndividualPhoto"
+          openLightbox={this.openLightbox}
+          index={i}
+          photo={photo}
+          key={photo}
+        />
+      );
     });
     return (
       <div>
-   <VisibilitySensor>
+        <VisibilitySensor>
           <ImagesWrapper>{photoReel}</ImagesWrapper>
         </VisibilitySensor>
-      
+
         {isOpen && (
           <Lightbox
             mainSrc={imagesUrls[photoIndex]}
@@ -59,8 +63,10 @@ export default class Photos extends Component {
             }
           />
         )}
-     </div>
+      </div>
     );
   }
-
+  openLightbox = i => {
+  this.setState({ isOpen: true, photoIndex: i });
+};
 }
