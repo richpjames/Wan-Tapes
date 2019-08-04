@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-
 const BuyWrapper = styled.section`
   position: absolute;
   top: 15%;
