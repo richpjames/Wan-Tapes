@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import IndividualTrack from "./IndividualTrack";
-import MusicControlButton from "./MusicControlButton";
+import MusicControlButton from "./StopButton";
 
 const ButtonsWrapper = styled.div``;
 const AudioPlayerWrap = styled.section`
@@ -28,39 +28,15 @@ export default class AudioPlayer extends Component {
     trackLink: null,
     player: "Stop",
     currentTime: 0,
-    duration: 0,
-    tracksArr: [
-      {
-        id: "A1",
-        title: "Lane Creeper",
-        length: 5.39,
-        glyph: "†",
-        uri: "https://www.wantapes.com/trax/A1-Lane-Creeper.mp3"
-      },
-      {
-        id: "A2",
-        title: "Gooseberry",
-        length: 4.47,
-        glyph: "†",
-        uri: "https://www.wantapes.com/trax/A2-Gooseberry.mp3"
-      },
-      {
-        id: "B1",
-        title: "Almost Definitely Nothing",
-        length: 12.01,
-        glyph: "‡",
-        uri: "https://www.wantapes.com/trax/B1-Almost-Definitely-Nothing.mp3"
-      }
-    ],
-    playStates: ["Play", "Stop", "Pause"]
+    duration: 0
   };
 
   render() {
-    const { tracksArr, playStates, selectedTrack } = this.state;
+    const { selectedTrack } = this.state;
+    const { tracks } = this.props;
     const currentTime = getTime(this.state.currentTime);
-    const stopAndPause = playStates.slice(1, 3);
 
-    const tracks = tracksArr.map(track => {
+    const trackList = tracks.map(track => {
       const { id, glyph, title, length, uri } = track;
       return (
         <IndividualTrack
@@ -74,18 +50,11 @@ export default class AudioPlayer extends Component {
         />
       );
     });
-
-    // const playerButtons = stopAndPause.map(playState => {
-    //   return (
-    //     <MusicControlButton
-    //       key={playState}
-    //       playState={playState}
-    //       setPlayState={this.setStateWithTrack}
-    //     />
-
     return (
       <AudioPlayerWrap className="audioPlayerWrap">
-        <Tracks>{tracks}</Tracks>
+        <Tracks>
+          <ul>{trackList}</ul>
+        </Tracks>
         <ButtonsWrapper className="buttonsWrapper">
           <MusicControlButton
             playState={"Stop"}
@@ -106,10 +75,9 @@ export default class AudioPlayer extends Component {
       trackLink,
       currentTime,
       selectedTrack,
-      tracksArr,
       duration
     } = this.state;
-
+    const { tracks } = this.props;
     if (player !== prevState.player) {
       if (player === "Pause") {
         this.player.pause();
@@ -132,19 +100,20 @@ export default class AudioPlayer extends Component {
       this.setState({
         player: "Play",
         selectedTrack: "Gooseberry",
-        trackLink: tracksArr[1].uri
+        trackLink: tracks[1].uri
       });
     }
     if (selectedTrack === "Gooseberry" && currentTime === duration - 1) {
       this.setState({
         player: "Play",
         selectedTrack: "Almost Definitely Nothing",
-        trackLink: tracksArr[2].uri
+        trackLink: tracks[2].uri
       });
     }
   }
 
   componentDidMount() {
+    this.setState({});
     this.player.addEventListener("timeupdate", e => {
       this.setState({
         currentTime: e.target.currentTime,

@@ -16,14 +16,14 @@ const ImagesWrapper = styled.div`
   border: 1px red dashed;
 `;
 
-const baseUrl = "https://www.wantapes.com/img/TapeImage";
-const photos = ["1.jpg", "2.jpg", "3.jpg", "4.jpg"];
-const imagesUrls = photos.map(photo => `${baseUrl}${photo}`);
 export default class Photos extends Component {
   state = { photoIndex: 0, isOpen: false };
 
   render() {
     const { photoIndex, isOpen } = this.state;
+    const { baseUrl, photos } = this.props;
+    const imagesUrls = photos.map(photo => `${baseUrl}img/${photo}`);
+
     const photoReel = imagesUrls.map((photo, i) => {
       return (
         <IndividualPhoto
