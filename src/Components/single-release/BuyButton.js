@@ -5,7 +5,8 @@ const BuyWrapper = styled.section`
   top: 15%;
 `;
 
-export default function BuyButton() {
+export default function BuyButton(props) {
+  const { buyCode } = props;
   return (
     <BuyWrapper>
       <form
@@ -14,7 +15,7 @@ export default function BuyButton() {
         target="_top"
       >
         <input type="hidden" name="cmd" value="_s-xclick" />
-        <input type="hidden" name="hosted_button_id" value="8PLDYY7R9GCBN" />
+        <input type="hidden" name="hosted_button_id" value={`${buyCode}`} />
         <table>
           <tbody>
             <tr>
@@ -37,8 +38,8 @@ export default function BuyButton() {
         </table>
         <input type="hidden" name="currency_code" value="GBP" />
         <input
-          type="image"
-          src="http://www.wantapes.com/img/buy.png"
+          type="button"
+          value="buy"
           border="0"
           name="submit"
           alt="PayPal – The safer, easier way to pay online!"
