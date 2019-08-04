@@ -1,17 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { releases } from "../../data/releases.json";
-import AudioPlayer from "../single-release/AudioPlayer";
 import BackgroundWrapper from "../single-release/ReleaseWrap";
-import Container from "../single-release/Container";
-import TitleText from "../single-release/TitleText";
-import Photos from "../single-release/Photos";
-import BuyButton from "../single-release/BuyButton";
-import Ribbon from "../single-release/Ribbon";
-
-const SecondContainerWrap = styled.div`
-  margin-top: 15vh;
-`;
 
 const Release = styled.section`
   width: 20%;
@@ -43,8 +33,17 @@ export default class ReleasesHome extends Component {
       }) => {
         return (
           <Release key={releaseDate}>
-            <BackgroundWrapper colors={colors} height={"200vh"} />
-            <Container primary />
+            <BackgroundWrapper
+              colors={colors}
+              height={"200vh"}
+              title={title}
+              artist={artist}
+              tracks={tracks}
+              baseUrl={baseUrl}
+              photos={photos}
+              buyCode={buyCode}
+            />
+            {/* <Container primary />
             <TitleText title={title} artist={artist} />
             <AudioPlayer tracks={tracks} baseUrl={baseUrl} />
             <Ribbon colors={colors} />
@@ -52,7 +51,7 @@ export default class ReleasesHome extends Component {
               <Container primary />
               <Photos photos={photos} baseUrl={baseUrl} />
             </SecondContainerWrap>
-            <BuyButton buyCode={buyCode} />
+            <BuyButton buyCode={buyCode} /> */}
           </Release>
         );
       }

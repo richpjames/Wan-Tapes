@@ -11,6 +11,6 @@ export const ContainerWrap = styled.section`
 
 `;
 
-export default function Container(props) {
+export default function TopSegment(props) {
   return <ContainerWrap {...props} />;
 }
