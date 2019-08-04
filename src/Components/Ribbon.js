@@ -10,6 +10,6 @@ const RibbonWrapper = styled.section`
   top: 35%;
 `;
 
-export default function RedRibbon() {
+export default function Ribbon() {
   return <RibbonWrapper />;
 }
