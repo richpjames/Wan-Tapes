@@ -36,18 +36,16 @@ export default class AudioPlayer extends Component {
 
     const trackList = tracks.map(({ id, glyph, title, uri, length }, i) => {
       return (
-        console.log(tracks[i].glyph, tracks[i - 1][glyph]),
-        (
-          <IndividualTrack
-            key={id}
-            glyph={glyph}
-            title={title}
-            uri={uri}
-            length={length}
-            selectedTrack={selectedTrack}
-            setStateWithTrack={this.setStateWithTrack}
-          />
-        )
+        // console.log(tracks[i].glyph, tracks[i - 1][glyph]),
+        <IndividualTrack
+          key={id}
+          glyph={glyph}
+          title={title}
+          uri={uri}
+          length={length}
+          selectedTrack={selectedTrack}
+          setStateWithTrack={this.setStateWithTrack}
+        />
       );
     });
     return (
