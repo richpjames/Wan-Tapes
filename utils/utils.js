@@ -1,4 +1,4 @@
-const AddLineBreak = tracks => {
+const addLineBreak = tracks => {
   const lineBreaks = tracks.map((track, i) => {
     let indexMinus1 = i - 1;
     let previousTrackSideId = tracks[indexMinus1]
@@ -11,4 +11,4 @@ const AddLineBreak = tracks => {
   return lineBreaks;
 };
 
-module.exports = { AddLineBreak };
+module.exports = { addLineBreak };
