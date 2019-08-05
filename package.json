@@ -19,7 +19,7 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "react-scripts test",
+        "test": "mocha spec/*.spec.js",
         "eject": "react-scripts eject"
     },
     "eslintConfig": {
@@ -41,6 +41,8 @@
         ]
     },
     "devDependencies": {
-        "cypress": "^3.4.1"
+        "chai": "^4.2.0",
+        "cypress": "^3.4.1",
+        "mocha": "^6.2.0"
     }
 }
