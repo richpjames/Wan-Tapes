@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { releases } from "../../data/releases.json";
-import BackgroundWrapper from "../single-release/ReleaseWrap";
+import ReleaseWrap from "../single-release/ReleaseWrap";
 
 const Release = styled.section`
-  border: 1px red solid;
+  margin-left: 10vw;
 `;
 
 const ReleasesWrapper = styled.section`
   display: flex;
-  border: 2px magenta solid;
+  border: 2px purple solid;
+  margin-top: 15vh;
+  margin-left: 25vw;
 `;
 
 export default class ReleasesHome extends Component {
@@ -32,10 +34,10 @@ export default class ReleasesHome extends Component {
         colors
       }) => {
         return (
-          <Release key={releaseDate}>
-            <BackgroundWrapper
+          <Release className="Release" key={releaseDate}>
+            <ReleaseWrap
               colors={colors}
-              height={"150vh"}
+              height={"100vh"}
               title={title}
               artist={artist}
               tracks={tracks}
@@ -43,20 +45,15 @@ export default class ReleasesHome extends Component {
               photos={photos}
               buyCode={buyCode}
             />
-            {/* <Container primary />
-            <TitleText title={title} artist={artist} />
-            <AudioPlayer tracks={tracks} baseUrl={baseUrl} />
-            <Ribbon colors={colors} />
-            <SecondContainerWrap>
-              <Container primary />
-              <Photos photos={photos} baseUrl={baseUrl} />
-            </SecondContainerWrap>
-            <BuyButton buyCode={buyCode} /> */}
           </Release>
         );
       }
     );
-    return <ReleasesWrapper>{releaseRoll}</ReleasesWrapper>;
+    return (
+      <ReleasesWrapper className="ReleasesWrapper">
+        {releaseRoll}
+      </ReleasesWrapper>
+    );
   }
   componentDidMount = () => {
     this.setState({ releases: releases, isLoading: false });

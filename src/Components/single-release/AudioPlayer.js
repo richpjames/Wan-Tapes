@@ -5,7 +5,7 @@ import MusicControlButton from "./StopButton";
 
 const ButtonsWrapper = styled.div``;
 const AudioPlayerWrap = styled.section`
-  
+  border: 1px red dashed;
 `;
 const Tracks = styled.ul`
   text-align: left;
@@ -34,25 +34,25 @@ export default class AudioPlayer extends Component {
     const { tracks } = this.props;
     const currentTime = getTime(this.state.currentTime);
 
-    const trackList = tracks.map(track => {
-      const { id, glyph, title, length, uri } = track;
+    const trackList = tracks.map(({ id, glyph, title, uri, length }, i) => {
       return (
-        <IndividualTrack
-          key={id}
-          glyph={glyph}
-          title={title}
-          uri={uri}
-          length={length}
-          selectedTrack={selectedTrack}
-          setStateWithTrack={this.setStateWithTrack}
-        />
+        console.log(tracks[i].glyph, tracks[i - 1][glyph]),
+        (
+          <IndividualTrack
+            key={id}
+            glyph={glyph}
+            title={title}
+            uri={uri}
+            length={length}
+            selectedTrack={selectedTrack}
+            setStateWithTrack={this.setStateWithTrack}
+          />
+        )
       );
     });
     return (
       <AudioPlayerWrap className="audioPlayerWrap">
-        <Tracks>
-          <ul>{trackList}</ul>
-        </Tracks>
+        <Tracks className="Tracks">{trackList}</Tracks>
         <ButtonsWrapper className="buttonsWrapper">
           <MusicControlButton
             playState={"Stop"}

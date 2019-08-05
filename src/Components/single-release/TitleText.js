@@ -1,19 +1,25 @@
 import React from "react";
 import styled from "styled-components";
+import Ribbon from "./Ribbon";
 
 export const Title = styled.h1`
-  
+  margin-top: 5vh;
+  margin-bottom: 0vh;
 `;
 
-export const Artist = styled.h1`
- 
+export const Artist = styled.h2`
+  min-height: 10vh;
+  padding: 0;
 `;
 
-export default function TitleText({ title, artist }) {
+const TextWrapper = styled.section``;
+
+export default function TitleText({ title, artist, colors }) {
   return (
-    <>
+    <TextWrapper>
       <Title>{title}</Title>
-      <Artist>{(title !== artist )? artist : null}</Artist>
-    </>
+      <Ribbon colors={colors} />
+      <Artist>{title !== artist ? artist : null}</Artist>
+    </TextWrapper>
   );
 }

@@ -7,7 +7,6 @@ import IndividualPhoto from "./IndividualPhoto";
 
 const ImagesWrapper = styled.div`
   display: flex;
-  padding-top: 10%;
   width: 80%;
   margin-left: auto;
   margin-right: auto;

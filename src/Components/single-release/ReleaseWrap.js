@@ -1,20 +1,26 @@
 import React from "react";
 import styled from "styled-components";
-import TopSegment from "../single-release/TopSegment";
 import TitleText from "../single-release/TitleText";
 import Photos from "../single-release/Photos";
 import BuyButton from "../single-release/BuyButton";
-import Ribbon from "../single-release/Ribbon";
 import AudioPlayer from "../single-release/AudioPlayer";
 
-const BottomSegmentWrap = styled.div`
+const BackgroundWrapper = styled.section`
+  background: ${props => (props.colors ? props.colors.background : "#000")};
+  height: ${props => (props.height ? props.height : "100vh")};
+  display: flex;
+  flex-direction: column;
+  max-width: 40vw;
+  max-height: 150vh;
 `;
 
-export const BackgroundWrapper = styled.section`
-  background: ${props => (props.colors ? props.colors.background : "#000")};
-  border: 5px blue solid;
-  /* height: ${props => (props.height ? props.height : "100vh")}; */
+export const TopSegment = styled.div`
+  background: #edeeef;
+  margin: 7%;
+`;
 
+const BottomSegmentWrap = styled.div`
+  background: white;
 `;
 
 export default function Background(props) {
@@ -22,9 +28,8 @@ export default function Background(props) {
   return (
     <BackgroundWrapper {...props} className="BackgroundWrapper">
       <TopSegment primary>
-        <TitleText title={title} artist={artist} />
+        <TitleText title={title} artist={artist} colors={colors} />
         <AudioPlayer tracks={tracks} baseUrl={baseUrl} />
-        <Ribbon colors={colors} />
       </TopSegment>
       <BottomSegmentWrap>
         <Photos photos={photos} baseUrl={baseUrl} />
