@@ -35,10 +35,10 @@ export default class AudioPlayer extends Component {
     const currentTime = getTime(this.state.currentTime);
 
     const trackList = tracks.map(({ id, glyph, title, uri, length }, i) => {
-      return (
-        // console.log(tracks[i].glyph, tracks[i - 1][glyph]),
+      const linebreakBool = this.lineBreakAdder(tracks, i)
+      return (<div key={id}>
+        {(linebreakBool) ? <br></br> : null }
         <IndividualTrack
-          key={id}
           glyph={glyph}
           title={title}
           uri={uri}
@@ -46,6 +46,7 @@ export default class AudioPlayer extends Component {
           selectedTrack={selectedTrack}
           setStateWithTrack={this.setStateWithTrack}
         />
+        </div>
       );
     });
     return (
@@ -133,5 +134,14 @@ export default class AudioPlayer extends Component {
   timeCheck = time => {
     if (time) return time;
     else return "00:00";
+  };
+  lineBreakAdder = (tracks, i) => {
+    let indexMinus1 = i - 1;
+    let previousTrackSideId = tracks[indexMinus1]
+      ? tracks[indexMinus1].id[0]
+      : tracks[i].id[0];
+    let currentTrackSideId = tracks[i].id[0];
+    if (previousTrackSideId !== currentTrackSideId) return true
+    else return false;
   };
 }
