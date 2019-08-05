@@ -84,7 +84,7 @@ describe("AddLineBreak", () => {
       }
     ];
     const actualOutput = AddLineBreak(input);
-    const expectedOutput = ["NoSpace", "Space"];
+    const expectedOutput = ["NoSpace", "Space", "NoSpace"];
     expect(actualOutput).to.eql(expectedOutput);
   });
 });
