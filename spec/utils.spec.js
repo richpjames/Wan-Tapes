@@ -1,4 +1,4 @@
-const { addLineBreak } = require("../utils/utils");
+const { addLineBreak } = require("../utils/addLineBreak");
 const { releases } = require("../src/data/releases");
 const { expect } = require("chai");
 
