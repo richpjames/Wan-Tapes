@@ -3,7 +3,21 @@ const { releases } = require("../src/data/releases");
 const { expect } = require("chai");
 
 describe("AddLineBreak", () => {
-  it("doesn't add linebreak when ids are the same", () => {
+  it("returns a string in array when passed one track object", () => {
+    const input = [
+      {
+        id: "A1",
+        title: "Lane Creeper",
+        length: 5.39,
+        glyph: "†",
+        uri: "https://www.wantapes.com/releases/ht-ht/trax/A1-Lane-Creeper.mp3"
+      }
+    ];
+    const actualOutput = AddLineBreak(input);
+    const expectedOutput = ["NoSpace"];
+    expect(actualOutput).to.eql(expectedOutput);
+  });
+  it("returns two nospaces in array when passed two track object with the same first letter of id", () => {
     const input = [
       {
         id: "A1",
