@@ -5,10 +5,9 @@ const AddLineBreak = tracks => {
       ? tracks[indexMinus1].id[0]
       : tracks[i].id[0];
     let currentTrackSideId = tracks[i].id[0];
-    if (previousTrackSideId !== currentTrackSideId) return "Space";
-    else return "NoSpace";
+    if (previousTrackSideId !== currentTrackSideId) return true;
+    else return false;
   });
-
   return lineBreaks;
 };
 

@@ -3,7 +3,7 @@ const { releases } = require("../src/data/releases");
 const { expect } = require("chai");
 
 describe("AddLineBreak", () => {
-  it("returns a string in array when passed one track object", () => {
+  it("returns false in array when passed one track object", () => {
     const input = [
       {
         id: "A1",
@@ -14,10 +14,10 @@ describe("AddLineBreak", () => {
       }
     ];
     const actualOutput = AddLineBreak(input);
-    const expectedOutput = ["NoSpace"];
+    const expectedOutput = [false];
     expect(actualOutput).to.eql(expectedOutput);
   });
-  it("returns two nospaces in array when passed two track object with the same first letter of id", () => {
+  it("returns false in array when passed two track object with the same first letter of id", () => {
     const input = [
       {
         id: "A1",
@@ -35,10 +35,10 @@ describe("AddLineBreak", () => {
       }
     ];
     const actualOutput = AddLineBreak(input);
-    const expectedOutput = ["NoSpace", "NoSpace"];
+    const expectedOutput = [false, false];
     expect(actualOutput).to.eql(expectedOutput);
   });
-  it("returns ['NoSpace', 'Space'] when passed two track object with two different first letters of id", () => {
+  it("returns [false, true] when passed two track object with two different first letters of id", () => {
     const input = [
       {
         id: "A1",
@@ -56,10 +56,10 @@ describe("AddLineBreak", () => {
       }
     ];
     const actualOutput = AddLineBreak(input);
-    const expectedOutput = ["NoSpace", "Space"];
+    const expectedOutput = [false, true];
     expect(actualOutput).to.eql(expectedOutput);
   });
-  it("returns ['NoSpace', 'Space', 'NoSpace']in array when passed three track object with two different first letters of id followed by one of the same id", () => {
+  it("returns [false, true, false]in array when passed three track object with two different first letters of id followed by one of the same id", () => {
     const input = [
       {
         id: "A1",
@@ -75,7 +75,7 @@ describe("AddLineBreak", () => {
         glyph: "†",
         uri: "https://www.wantapes.com/releases/ht-ht/trax/A2-Gooseberry.mp3"
       },
-       {
+      {
         id: "B3",
         title: "Gooseberry",
         length: 4.47,
@@ -84,7 +84,7 @@ describe("AddLineBreak", () => {
       }
     ];
     const actualOutput = AddLineBreak(input);
-    const expectedOutput = ["NoSpace", "Space", "NoSpace"];
+    const expectedOutput = [false, true, false];
     expect(actualOutput).to.eql(expectedOutput);
   });
 });
