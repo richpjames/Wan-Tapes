@@ -10,8 +10,8 @@ const Release = styled.section`
 const ReleasesWrapper = styled.section`
   display: flex;
   border: 2px purple solid;
-  margin-top: 15vh;
   margin-left: 25vw;
+  width: 200vw;
 `;
 
 export default class ReleasesHome extends Component {
