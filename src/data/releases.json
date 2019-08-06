@@ -36,27 +36,34 @@
         "colors": { "background": "#a0ecff", "other": "#ff3030" },
         "coverArt": ""
     }, {
-        "title": "Big Deal",
-        "artist": "Not TaD",
+        "title": "Påsan",
+        "artist": "Chankle",
         "releaseDate": "15/08/2019",
         "tracks": [{
                 "id": "A1",
-                "title": "Lane Creeper",
-                "length": 5.39,
+                "title": "Skulle Ønske Jeg Var Høy (Like Høy Som Deg)",
+                "length": 3.21,
                 "glyph": "†",
                 "uri": "https://www.wantapes.com/releases/ht-ht/trax/A1-Lane-Creeper.mp3"
             },
             {
                 "id": "A2",
-                "title": "Gooseberry",
-                "length": 4.47,
+                "title": "Et Øyeblikk I Sanden",
+                "length": 3.41,
                 "glyph": "†",
                 "uri": "https://www.wantapes.com/releases/ht-ht/trax/A2-Gooseberry.mp3"
             },
             {
                 "id": "B1",
-                "title": "Almost Definitely Nothing",
-                "length": 12.01,
+                "title": "Skrubbsår",
+                "length": 4.32,
+                "glyph": "‡",
+                "uri": "https://www.wantapes.com/releases/ht-ht/trax/B1-Almost-Definitely-Nothing.mp3"
+            },
+            {
+                "id": "B2",
+                "title": "Dagen Derpå",
+                "length": 4.33,
                 "glyph": "‡",
                 "uri": "https://www.wantapes.com/releases/ht-ht/trax/B1-Almost-Definitely-Nothing.mp3"
             }
@@ -68,10 +75,10 @@
             "TapeImage3.jpg",
             "TapeImage4.jpg"
         ],
-        "baseUrl": "https://www.wantapes.com/releases/ht-ht/",
+        "baseUrl": "https://www.wantapes.com/releases/ch-pa/",
         "colors": {
-            "background": "#a0ecff",
-            "other": "#ff3030"
+            "background": "#0a6649",
+            "other": "#ff7733"
         },
         "coverArt": ""
     }]
