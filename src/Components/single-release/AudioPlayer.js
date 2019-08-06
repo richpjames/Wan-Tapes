@@ -1,14 +1,20 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import IndividualTrack from "./IndividualTrack";
-import MusicControlButton from "./StopButton";
+import StopButton from "./StopButton";
 
-const ButtonsWrapper = styled.div``;
-const AudioPlayerWrap = styled.section`
-  border: 1px red dashed;
+const AudioPlayerWrap = styled.section``;
+
+const TimeStopWrapper = styled.div`
+  width: 15%;
+  margin-left: auto;
+  margin-right: auto;
 `;
+
 const Tracks = styled.ul`
   text-align: left;
+  padding-left: 2%;
+  font-size: 0.8em;
 `;
 const TimerWrapper = styled.div``;
 
@@ -35,32 +41,30 @@ export default class AudioPlayer extends Component {
     const currentTime = getTime(this.state.currentTime);
 
     const trackList = tracks.map(({ id, glyph, title, uri, length }, i) => {
-      const linebreakBool = this.lineBreakAdder(tracks, i)
-      return (<div key={id}>
-        {(linebreakBool) ? <br></br> : null }
-        <IndividualTrack
-          glyph={glyph}
-          title={title}
-          uri={uri}
-          length={length}
-          selectedTrack={selectedTrack}
-          setStateWithTrack={this.setStateWithTrack}
-        />
+      const linebreakBool = this.lineBreakAdder(tracks, i);
+      return (
+        <div key={id}>
+          {linebreakBool ? <br /> : null}
+          <IndividualTrack
+            glyph={glyph}
+            title={title}
+            uri={uri}
+            length={length}
+            selectedTrack={selectedTrack}
+            setStateWithTrack={this.setStateWithTrack}
+          />
         </div>
       );
     });
     return (
       <AudioPlayerWrap className="audioPlayerWrap">
         <Tracks className="Tracks">{trackList}</Tracks>
-        <ButtonsWrapper className="buttonsWrapper">
-          <MusicControlButton
-            playState={"Stop"}
-            setPlayState={this.setStateWithTrack}
-          />
-        </ButtonsWrapper>
-        <TimerWrapper className="timerWrapper">
-          {this.timeCheck(currentTime)}
-        </TimerWrapper>
+        <TimeStopWrapper>
+          <StopButton setPlayState={this.setStateWithTrack} />
+          <TimerWrapper className="timerWrapper">
+            {this.timeCheck(currentTime)}
+          </TimerWrapper>
+        </TimeStopWrapper>
         <audio ref={ref => (this.player = ref)} />
       </AudioPlayerWrap>
     );
@@ -141,7 +145,7 @@ export default class AudioPlayer extends Component {
       ? tracks[indexMinus1].id[0]
       : tracks[i].id[0];
     let currentTrackSideId = tracks[i].id[0];
-    if (previousTrackSideId !== currentTrackSideId) return true
+    if (previousTrackSideId !== currentTrackSideId) return true;
     else return false;
   };
 }
