@@ -4,42 +4,36 @@ import wansplash from "../../Assets/wan-splash.png";
 
 const Container = styled.section`
   height: 100vh;
+  width: 100vw;
   max-height: 100%;
   max-width: 100%;
-  width: 100vw;
   margin: 0 auto;
-  /* background: red; */
-  z-index: -1;
   overflow: hidden;
+  background: #fff;
 `;
 
-const WanTapesLetters = styled.img`
-  height: auto;
-  width: 80%;
-  position: absolute;
-  z-index: 5;
-  background: white;
+const Image = styled.div`
   overflow: hidden;
-  margin-left: -40%;
-  margin-top: -50%;
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+  background: url("https://wantapes.com/wansplash.svg") center center no-repeat;
+  background-size: 85%;
 `;
 
 const ImageWrap = styled.div`
-  overflow: hidden;
   margin: 0 auto;
-  width: 80%;
-  background: url(./../../Assets/wan-splash.png) center center no-repeat;
+  width: 100%;
+  height: 100%;
+  background: #fff;
 `;
 
 export default function HomePage() {
   return (
     <Container className="Container">
-      <ImageWrap className="ImageWrap" />
-      {/* <WanTapesLetters
-          className="WanTapesLetters"
-          src={wansplash}
-          alt="wan tapes splash"
-        /> */}
+      <ImageWrap className="ImageWrap">
+        <Image className="Image" />
+      </ImageWrap>
     </Container>
   );
 }
