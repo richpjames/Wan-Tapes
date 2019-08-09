@@ -4,6 +4,7 @@ import TitleText from "../single-release/TitleText";
 import Photos from "../single-release/Photos";
 import BuyButton from "../single-release/BuyButton";
 import AudioPlayer from "../single-release/AudioPlayer";
+import Cover from "./Cover";
 
 const BackgroundWrapper = styled.section`
   background: ${props => (props.colors ? props.colors.background : "#000")};
@@ -17,6 +18,7 @@ const BackgroundWrapper = styled.section`
 export const TopSegment = styled.div`
   background: #edeeef;
   margin: 7%;
+  min-height: 70vh;
 `;
 
 const BottomSegmentWrap = styled.div`
@@ -24,16 +26,34 @@ const BottomSegmentWrap = styled.div`
 `;
 
 export default function Background(props) {
-  const { title, artist, tracks, buyCode, photos, baseUrl, colors } = props;
+  const {
+    title,
+    artist,
+    tracks,
+    buyCode,
+    photos,
+    baseUrl,
+    colors,
+    coverArt
+  } = props;
   return (
     <BackgroundWrapper {...props} className="BackgroundWrapper">
-      <TopSegment primary>
-        <TitleText title={title} artist={artist} colors={colors} />
-        <AudioPlayer tracks={tracks} baseUrl={baseUrl} />
+      <TopSegment coverArt={coverArt} primary className="TopSegment">
+        <TitleText
+          title={title}
+          artist={artist}
+          colors={colors}
+          className="TitleText"
+        />
+        <AudioPlayer
+          tracks={tracks}
+          baseUrl={baseUrl}
+          className="AudioPlayer"
+        />
       </TopSegment>
-      <BottomSegmentWrap>
-        <Photos photos={photos} baseUrl={baseUrl} />
-        <BuyButton buyCode={buyCode} />
+      <BottomSegmentWrap className="BottomSegmentWrap">
+        <Photos photos={photos} baseUrl={baseUrl} className="Photos" />
+        <BuyButton buyCode={buyCode} className="BuyButton" />
       </BottomSegmentWrap>
     </BackgroundWrapper>
   );

@@ -34,7 +34,7 @@
         ],
         "baseUrl": "https://www.wantapes.com/releases/ht-ht/",
         "colors": { "background": "#a0ecff", "other": "#ff3030" },
-        "coverArt": ""
+        "coverArt": "https://www.wantapes.com/releases/ht-ht/img/cover.jpg"
     }, {
         "title": "Påsan",
         "artist": "Chankle",

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { releases } from "../../data/releases.json";
 import ReleaseWrap from "../single-release/ReleaseWrap";
+import Timeline from "../home/Timeline";
 
 const Release = styled.section`
   margin-left: 10vw;
@@ -10,8 +11,7 @@ const Release = styled.section`
 const ReleasesWrapper = styled.section`
   display: flex;
   border: 2px purple solid;
-  margin-left: 25vw;
-  width: 200vw;
+  width: 100vw;
 `;
 
 export default class ReleasesHome extends Component {
@@ -31,7 +31,8 @@ export default class ReleasesHome extends Component {
         buyCode,
         photos,
         baseUrl,
-        colors
+        colors,
+        coverArt
       }) => {
         return (
           <Release className="Release" key={releaseDate}>
@@ -44,6 +45,7 @@ export default class ReleasesHome extends Component {
               baseUrl={baseUrl}
               photos={photos}
               buyCode={buyCode}
+              coverArt={coverArt}
             />
           </Release>
         );
@@ -52,6 +54,7 @@ export default class ReleasesHome extends Component {
     return (
       <ReleasesWrapper className="ReleasesWrapper">
         {releaseRoll}
+        <Timeline />
       </ReleasesWrapper>
     );
   }
