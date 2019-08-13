@@ -6,12 +6,12 @@ import Timeline from "../home/Timeline";
 
 const Release = styled.section`
   margin-left: 10vw;
+  min-width: 30vw;
 `;
 
 const ReleasesWrapper = styled.section`
   display: flex;
   border: 2px purple solid;
-  width: 100vw;
 `;
 
 export default class ReleasesHome extends Component {
@@ -54,7 +54,6 @@ export default class ReleasesHome extends Component {
     return (
       <ReleasesWrapper className="ReleasesWrapper">
         {releaseRoll}
-        <Timeline />
       </ReleasesWrapper>
     );
   }
