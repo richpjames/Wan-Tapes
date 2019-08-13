@@ -4,7 +4,6 @@ import TitleText from "../single-release/TitleText";
 import Photos from "../single-release/Photos";
 import BuyButton from "../single-release/BuyButton";
 import AudioPlayer from "../single-release/AudioPlayer";
-import Cover from "./Cover";
 
 const BackgroundWrapper = styled.section`
   background: ${props => (props.colors ? props.colors.background : "#000")};

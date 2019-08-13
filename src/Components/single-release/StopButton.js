@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { FaStop, FaPause } from "react-icons/fa";
+import { FaStop} from "react-icons/fa";
 
 export const Stop = styled.button`
   margin-top: 5px;
