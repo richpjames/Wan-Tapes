@@ -14,7 +14,7 @@ const TimeStopWrapper = styled.div`
 const Tracks = styled.ul`
   text-align: left;
   padding-left: 2%;
-  font-size: 0.8em;
+  font-size: 0.95em;
 `;
 const TimerWrapper = styled.div``;
 
