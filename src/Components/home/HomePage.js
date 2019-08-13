@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import wansplash from "../../Assets/wan-splash.png";
+import { Link } from "@reach/router";
 
 const Container = styled.section`
   height: 100vh;
@@ -17,7 +17,8 @@ const Image = styled.div`
   margin: 0 auto;
   height: 100%;
   width: 100%;
-  background: url("https://wantapes.com/wansplash.svg") center center no-repeat;
+  background: url("https://wantapes.com/images/wansplash.svg") center center
+    no-repeat;
   background-size: 85%;
 `;
 
@@ -31,9 +32,11 @@ const ImageWrap = styled.div`
 export default function HomePage() {
   return (
     <Container className="Container">
-      <ImageWrap className="ImageWrap">
-        <Image className="Image" />
-      </ImageWrap>
+      <Link to="/releases">
+        <ImageWrap className="ImageWrap">
+          <Image className="Image" />
+        </ImageWrap>
+      </Link>
     </Container>
   );
 }
