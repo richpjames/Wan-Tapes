@@ -18,6 +18,40 @@ const Tracks = styled.ul`
 `;
 const TimerWrapper = styled.div``;
 
+const TapeWrapper = styled.div`
+  width: 25px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const TapeWheel = styled.img`
+  width: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-animation: ${props =>
+    props.player === "Play" ? "spin 4s linear infinite" : null};
+  -moz-animation: ${props =>
+    props.player === "Play" ? "spin 4s linear infinite" : null};
+  animation: ${props =>
+    props.player === "Play" ? "spin 4s linear infinite" : null};
+  @-moz-keyframes spin {
+    100% {
+      -moz-transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes spin {
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  @keyframes spin {
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+`;
+
 function getTime(time) {
   if (!isNaN(time)) {
     return (
@@ -36,7 +70,7 @@ export default class AudioPlayer extends Component {
   };
 
   render() {
-    const { selectedTrack } = this.state;
+    const { selectedTrack, player } = this.state;
     const { tracks } = this.props;
     const currentTime = getTime(this.state.currentTime);
 
@@ -61,6 +95,14 @@ export default class AudioPlayer extends Component {
         <Tracks className="Tracks">{trackList}</Tracks>
         <TimeStopWrapper>
           <StopButton setPlayState={this.setStateWithTrack} />
+          <TapeWrapper>
+            <TapeWheel
+              playing
+              src="https://www.wantapes.com/images/favicon.png"
+              className="TapeWheel"
+              {...this.state}
+            />
+          </TapeWrapper>
           <TimerWrapper className="timerWrapper">
             {this.timeCheck(currentTime)}
           </TimerWrapper>
