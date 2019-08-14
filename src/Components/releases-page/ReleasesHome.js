@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { releases } from "../../data/releases.json";
 import ReleaseWrap from "../single-release/ReleaseWrap";
-import Timeline from "../home/Timeline";
+import Banner from "../home/Banner";
 
 const Release = styled.section`
   margin-left: 10vw;
   min-width: 30vw;
+  padding: 0 5vw;
 `;
 
 const ReleasesWrapper = styled.section`
   display: flex;
-  border: 2px purple solid;
 `;
 
 export default class ReleasesHome extends Component {
@@ -52,9 +52,12 @@ export default class ReleasesHome extends Component {
       }
     );
     return (
-      <ReleasesWrapper className="ReleasesWrapper">
-        {releaseRoll}
-      </ReleasesWrapper>
+      <>
+        <Banner />
+        <ReleasesWrapper className="ReleasesWrapper">
+          {releaseRoll}
+        </ReleasesWrapper>
+      </>
     );
   }
   componentDidMount = () => {
