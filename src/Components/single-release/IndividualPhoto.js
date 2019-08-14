@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const Image = styled.img``;
+const Image = styled.img`
+  padding: 10px;
+`;
 
 export default function IndividualPhoto(props) {
   const { openLightbox, photo, index } = props;
