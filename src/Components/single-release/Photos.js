@@ -8,10 +8,13 @@ import IndividualPhoto from "./IndividualPhoto";
 const ImagesWrapper = styled.div`
   display: flex;
   width: 80%;
+  margin-top: 2vh;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 2vh;
   z-index: 5;
-  border: 1px red dashed;
+  width: 100%;
+  height: auto;
 `;
 
 export default class Photos extends Component {
