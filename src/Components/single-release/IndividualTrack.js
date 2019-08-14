@@ -14,7 +14,6 @@ export default function IndividualTrack({
   return (
     <Track className="track">
       {`${glyph} ${title} ${length}`}
-
       {selectedTrack === title ? (
         <>
           <button onClick={() => setStateWithTrack("Pause")}>
