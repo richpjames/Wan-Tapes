@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { FaStop} from "react-icons/fa";
+import { FaStop } from "react-icons/fa";
 
 export const Stop = styled.button`
   margin-top: 5px;
@@ -8,8 +8,10 @@ export const Stop = styled.button`
 
 export default function MusicControlButton({ setPlayState }) {
   return (
-    <Stop className="ButtonWrapper" onClick={() => setPlayState("Stop")}>
-      <FaStop />
-    </Stop>
+    <>
+      <Stop className="Stop" onClick={() => setPlayState("Stop")}>
+        <FaStop />
+      </Stop>
+    </>
   );
 }
