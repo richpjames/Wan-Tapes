@@ -1,6 +1,26 @@
 import React from "react";
 import styled from "styled-components";
-const BuyWrapper = styled.section``;
+
+const BuyWrapper = styled.section`
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+`;
+const Button = styled.input`
+  font-size: 1em;
+`;
+const InputWrapper = styled.div`
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const Table = styled.tbody`
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+`;
 
 export default function BuyButton(props) {
   const { buyCode } = props;
@@ -14,11 +34,10 @@ export default function BuyButton(props) {
         <input type="hidden" name="cmd" value="_s-xclick" />
         <input type="hidden" name="hosted_button_id" value={`${buyCode}`} />
         <table>
-          <tbody>
+          <Table>
             <tr>
               <td>
                 <input type="hidden" name="on0" value="item" />
-                item
               </td>
             </tr>
             <tr>
@@ -27,20 +46,22 @@ export default function BuyButton(props) {
                   <option value="tape + download">
                     tape + download £7.03 GBP
                   </option>
-                  <option value="download only">download only £3.07 GBP</option>
+                  <option value="download only">download £3.07 GBP</option>
                 </select>
               </td>
             </tr>
-          </tbody>
+          </Table>
         </table>
         <input type="hidden" name="currency_code" value="GBP" />
-        <input
-          type="button"
-          value="buy"
-          border="0"
-          name="submit"
-          alt="PayPal – The safer, easier way to pay online!"
-        />
+        <InputWrapper>
+          <Button
+            type="button"
+            value="buy"
+            border="0"
+            name="submit"
+            alt="PayPal – The safer, easier way to pay online!"
+          />
+        </InputWrapper>
         <img
           alt=""
           border="0"
