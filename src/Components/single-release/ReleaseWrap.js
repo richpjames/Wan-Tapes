@@ -11,17 +11,14 @@ const BackgroundWrapper = styled.section`
   display: flex;
   flex-direction: column;
   max-width: 40vw;
-  max-height: 150vh;
+  min-width: 40vw;
+  height: auto;
 `;
 
 export const TopSegment = styled.div`
   background: #edeeef;
   margin: 7%;
   min-height: 70vh;
-`;
-
-const BottomSegmentWrap = styled.div`
-  background: white;
 `;
 
 export default function Background(props) {
@@ -49,11 +46,9 @@ export default function Background(props) {
           baseUrl={baseUrl}
           className="AudioPlayer"
         />
-      </TopSegment>
-      <BottomSegmentWrap className="BottomSegmentWrap">
         <Photos photos={photos} baseUrl={baseUrl} className="Photos" />
         <BuyButton buyCode={buyCode} className="BuyButton" />
-      </BottomSegmentWrap>
+      </TopSegment>
     </BackgroundWrapper>
   );
 }
