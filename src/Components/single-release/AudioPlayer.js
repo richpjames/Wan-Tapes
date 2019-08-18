@@ -70,7 +70,7 @@ export default class AudioPlayer extends Component {
   };
 
   render() {
-    const { selectedTrack, player } = this.state;
+    const { selectedTrack } = this.state;
     const { tracks } = this.props;
     const currentTime = getTime(this.state.currentTime);
 
