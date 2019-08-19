@@ -3,8 +3,7 @@ import styled from "styled-components";
 import { releases } from "../../data/releases.json";
 import ReleaseWrap from "../single-release/ReleaseWrap";
 import Banner from "../home/Banner";
-import Timeline from "./Timeline"
-
+import Timeline from "./Timeline";
 
 const Release = styled.section`
   margin-left: 10vw;
@@ -20,10 +19,11 @@ export default class ReleasesHome extends Component {
   state = {
     isLoading: true,
     error: false,
-    releases: []
+    releases: [],
+    detail: false
   };
   render() {
-    const { releases } = this.state;
+    const { releases, detail } = this.state;
     const releaseRoll = releases.map(
       ({
         title,
@@ -48,6 +48,8 @@ export default class ReleasesHome extends Component {
               photos={photos}
               buyCode={buyCode}
               coverArt={coverArt}
+              showDetail={this.showDetail}
+              detail={detail}
             />
           </Release>
         );
@@ -59,10 +61,21 @@ export default class ReleasesHome extends Component {
         <ReleasesWrapper className="ReleasesWrapper">
           {releaseRoll}
         </ReleasesWrapper>
-        <Timeline/>
+        <Timeline />
       </>
     );
   }
+
+  showDetail = () => {
+    const { detail } = this.state;
+    if (detail === false) {
+      this.setState({ detail: true });
+    } else {
+      this.setState({
+        detail: false
+      });
+    }
+  };
   componentDidMount = () => {
     this.setState({ releases: releases, isLoading: false });
   };
