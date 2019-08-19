@@ -4,6 +4,7 @@ import TitleText from "../single-release/TitleText";
 import Photos from "../single-release/Photos";
 import BuyButton from "../single-release/BuyButton";
 import AudioPlayer from "../single-release/AudioPlayer";
+import CoverArt from "./CoverArt";
 
 const BackgroundWrapper = styled.section`
   background: ${props => (props.colors ? props.colors.background : "#000")};
@@ -21,7 +22,7 @@ export const TopSegment = styled.div`
   min-height: 70vh;
 `;
 
-export default function Background(props) {
+export default function ReleaseWrap(props) {
   const {
     title,
     artist,
@@ -30,26 +31,33 @@ export default function Background(props) {
     photos,
     baseUrl,
     colors,
-    coverArt
+    coverArt,
+    showDetail,
+    detail
   } = props;
   return (
-    <BackgroundWrapper {...props} className="BackgroundWrapper">
-      <CoverArt coverArt={coverArt} />
-      <TopSegment coverArt={coverArt} primary className="TopSegment">
-        <TitleText
-          title={title}
-          artist={artist}
-          colors={colors}
-          className="TitleText"
-        />
-        <AudioPlayer
-          tracks={tracks}
-          baseUrl={baseUrl}
-          className="AudioPlayer"
-        />
-        <Photos photos={photos} baseUrl={baseUrl} className="Photos" />
-        <BuyButton buyCode={buyCode} className="BuyButton" />
-      </TopSegment>
-    </BackgroundWrapper>
+    <>
+      {detail ? (
+        <BackgroundWrapper {...props} className="BackgroundWrapper">
+          <TopSegment coverArt={coverArt} primary className="TopSegment">
+            <TitleText
+              title={title}
+              artist={artist}
+              colors={colors}
+              className="TitleText"
+            />
+            <AudioPlayer
+              tracks={tracks}
+              baseUrl={baseUrl}
+              className="AudioPlayer"
+            />
+            <Photos photos={photos} baseUrl={baseUrl} className="Photos" />
+            <BuyButton buyCode={buyCode} className="BuyButton" />
+          </TopSegment>
+        </BackgroundWrapper>
+      ) : (
+        <CoverArt coverArt={coverArt} showDetail={showDetail} />
+      )}
+    </>
   );
 }
