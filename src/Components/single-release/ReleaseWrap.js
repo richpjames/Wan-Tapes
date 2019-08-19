@@ -34,6 +34,7 @@ export default function Background(props) {
   } = props;
   return (
     <BackgroundWrapper {...props} className="BackgroundWrapper">
+      <CoverArt coverArt={coverArt} />
       <TopSegment coverArt={coverArt} primary className="TopSegment">
         <TitleText
           title={title}
