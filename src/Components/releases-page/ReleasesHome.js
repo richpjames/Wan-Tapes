@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { releases } from "../../data/releases.json";
 import ReleaseWrap from "../single-release/ReleaseWrap";
 import Banner from "../home/Banner";
+import Timeline from "./Timeline"
+
 
 const Release = styled.section`
   margin-left: 10vw;
@@ -57,6 +59,7 @@ export default class ReleasesHome extends Component {
         <ReleasesWrapper className="ReleasesWrapper">
           {releaseRoll}
         </ReleasesWrapper>
+        <Timeline/>
       </>
     );
   }
